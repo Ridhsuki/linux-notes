@@ -203,5 +203,11 @@ sudo update-rc.d lampp defaults
 
 ---
 
+## Akses Mysql
+
+```
+/opt/lampp/bin/mysql -u root
+```
+
 Kalau kamu mau saya bantu **menjalankan Laravel project kamu di XAMPP (port 80 atau 8080)**, kirimkan saja struktur folder project-nya (atau path-nya) — nanti saya bantu konfigurasi virtual host atau symlink-nya biar langsung jalan di browser.
 
