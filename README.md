@@ -211,3 +211,35 @@ sudo update-rc.d lampp defaults
 
 Kalau kamu mau saya bantu **menjalankan Laravel project kamu di XAMPP (port 80 atau 8080)**, kirimkan saja struktur folder project-nya (atau path-nya) — nanti saya bantu konfigurasi virtual host atau symlink-nya biar langsung jalan di browser.
 
+
+### I Try to manipulate date of commit
+
+---
+
+<h2>📚 Others</h2>
+
+Berikut adalah dokumen terkait pengembangan proyek DekatKu:
+
+  * **Project Planning:** [Google Docs - Perencanaan Sistem](https://docs.google.com/document/d/1cfyK1IEp7QWCWGjvf5Z-vEQ3a56NhXHrvp1Lzs2hAOk/edit?usp=sharing)
+  * **ER Diagram (ERD):** #5
+  * **Hackathon Submission:** [Imphnen Hackathon Team Page](https://hackathon.imphnen.dev/teams/a0e4ff56-888d-47d8-a0cb-4d38c6676567/submission)
+
+---
+
+<div align="center" style="background-color: #ffffff; padding: 20px; border-radius: 20px; width: fit-content; margin: 0 auto; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  <h3 style="color: #333; margin-top: 0;">Supported By</h3>
+  
+  <div style="display: flex; gap: 25px; justify-content: center; align-items: center; flex-wrap: wrap; background-color: #efefef; padding: 10px 0;">
+    <a href="https://www.facebook.com/groups/1032515944638255" target="_blank" style="display: flex; align-items: center;">
+      <img src="https://hackathon.imphnen.dev/images/imphnen-logo.svg" alt="Imphnen Community" height="50"/>
+    </a>
+    <a href="https://www.kolosal.ai/" target="_blank" style="display: flex; align-items: center;">
+      <img src="https://avatars.githubusercontent.com/u/127637382?s=200&v=4" alt="Kolosal AI" height="58" style="margin-top: -2px;"/>
+    </a>
+  </div>
+
+  <p style="color: #555; margin-bottom: 0; margin-top: 15px;">
+    <em>Big thanks to <b>Imphnen</b> & <b>Kolosal AI</b> for the support!</em>
+  </p>
+</div>
+<br>
