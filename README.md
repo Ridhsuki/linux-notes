@@ -258,3 +258,9 @@ php artisan cache:clear
 php artisan view:clear
 php artisan optimize
 ```
+
+
+composer install for production
+```
+composer install --no-dev --optimize-autoloader
+```
