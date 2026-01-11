@@ -260,6 +260,18 @@ php artisan optimize:clear
 
 ```
 
+# 1. Install necessary tools (if not already present)
+sudo apt update && sudo apt install hostapd dnsmasq create_ap
+
+# 2. Stop services temporarily (optional, but good practice)
+sudo systemctl stop hostapd dnsmasq
+
+# 3. Start the hotspot (replace wlan1 with your AP interface, eth0 with your internet source)
+# Example: Create hotspot named 'MyKaliHotspot' with password 'mypassword123'
+sudo create_ap wlan1 eth0 MyKaliHotspot mypassword123
+
+# To stop it, press Ctrl+C in the terminal where create_ap is running.
+
 
 composer install for production
 ```
