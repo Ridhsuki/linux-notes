@@ -277,3 +277,109 @@ composer install for production
 ```
 composer install --no-dev --optimize-autoloader
 ```
+
+
+Ini **kejadian khas Kali Linux** 👍
+Masalahnya **bukan command‑nya salah**, tapi **shell yang kamu pakai bukan bash**.
+
+👉 **Kali Linux default pakai `zsh`**, bukan `bash`
+Dan di **zsh**, `history -c` / `history -w` **memang nggak ada**, makanya keluar error:
+
+```
+fc: event not found: -c
+```
+
+---
+
+## ✅ Cara clear history di Kali Linux (ZSH)
+
+### 1️⃣ Clear history session + file (AMAN & RECOMMENDED)
+
+Jalankan ini:
+
+```bash
+rm ~/.zsh_history
+history -p
+```
+
+Lalu **tutup terminal dan buka lagi**.
+
+✔️ Ini benar‑benar hapus history
+✔️ Cocok buat Kali / zsh
+
+---
+
+### 2️⃣ Clear history tanpa logout (langsung bersih)
+
+```bash
+rm ~/.zsh_history
+fc -p
+```
+
+`fc -p` = reset history stack di zsh
+
+---
+
+### 3️⃣ Clear history & stop logging sementara
+
+Kalau mau **session ini nggak nyimpan history sama sekali**:
+
+```bash
+unset HISTFILE
+rm ~/.zsh_history
+```
+
+⚠️ Setelah ini, command kamu **tidak akan disimpan** sampai terminal ditutup.
+
+---
+
+## 🔍 Cek kamu pakai shell apa
+
+Biar yakin:
+
+```bash
+echo $SHELL
+```
+
+Kalau hasilnya:
+
+* `/usr/bin/zsh` → pakai cara di atas ✅
+* `/bin/bash` → baru pakai `history -c`
+
+---
+
+## 🧠 Kenapa error `fc: event not found` muncul?
+
+Karena di **zsh**:
+
+* `history` ≠ `bash history`
+* `-c` dan `-w` dianggap **event**, bukan option
+
+Makanya zsh bilang:
+
+> “event `-c` tidak ditemukan”
+
+---
+
+## ✅ TL;DR (jawaban singkat)
+
+Di Kali Linux (zsh):
+
+```bash
+rm ~/.zsh_history
+fc -p
+```
+
+Tutup terminal → buka lagi → **history bersih total** 🧼
+
+---
+
+Kalau kamu mau:
+
+* clear history **tanpa root**
+* clear history **untuk forensics hygiene**
+* atau **permanently disable history di Kali**
+
+bilang aja, aku jelasin level‑by‑level 🔥
+
+
