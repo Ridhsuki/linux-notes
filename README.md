@@ -383,3 +383,68 @@ Kalau kamu mau:
 bilang aja, aku jelasin level‑by‑level 🔥
 
 
+Ini versi yang jauh lebih simpel, berfokus hanya pada kendali terminal:
+
+---
+
+### 🟢 Menjalankan RustDesk (Saat Ingin Remote)
+
+Cukup buka lewat menu aplikasi (GUI) atau ketik di terminal:
+
+```bash
+rustdesk
+
+```
+
+*(Tidak perlu menjalankan service sistem jika hanya ingin remote keluar).*
+
+---
+
+### 🔴 Mematikan Total & Hapus Ikon Topbar
+
+Gunakan ini setelah selesai pakai agar Kali bersih kembali:
+
+```bash
+sudo pkill rustdesk
+
+```
+
+---
+
+### 🛡️ Pengaturan Service (Background)
+
+Gunakan ini untuk mengatur apakah RustDesk boleh berjalan otomatis atau tidak:
+
+* **Matikan Auto-Start (Sangat Disarankan):**
+Agar RustDesk tidak jalan sendiri saat laptop baru nyala.
+```bash
+sudo systemctl disable rustdesk
+
+```
+
+
+* **Nyalakan Jika Ingin Di-Remote dari Windows:**
+Wajib dijalankan jika laptop Kali kamu yang mau dikontrol dari jauh.
+```bash
+sudo systemctl start rustdesk
+
+```
+
+
+* **Matikan Service Saat Ini:**
+```bash
+sudo systemctl stop rustdesk
+
+```
+
+
+
+---
+
+### 📝 Ringkasan Cepat:
+
+1. **Mau Remote Windows?** Buka aplikasi → Pakai → `sudo pkill rustdesk` (selesai).
+2. **Mau Di-Remote Windows?** `sudo systemctl start rustdesk` → Berikan ID ke teman.
+3. **Ikon Topbar Ganggu?** `sudo pkill rustdesk`.
+
+Ada lagi perintah spesifik yang ingin kamu buatkan shortcut-nya?
