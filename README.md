@@ -346,3 +346,10 @@ sudo systemctl stop rustdesk
 3. **Ikon Topbar Ganggu?** `sudo pkill rustdesk`.
 
 Ada lagi perintah spesifik yang ingin kamu buatkan shortcut-nya?
+
+
+### Others Resource
+#### Best 
+- _Cooming Soon_
+#### Not Bad
+- https://github.com/U171N/perintah-linux.git
