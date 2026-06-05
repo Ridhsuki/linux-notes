@@ -353,3 +353,4 @@ Ada lagi perintah spesifik yang ingin kamu buatkan shortcut-nya?
 - _Cooming Soon_
 #### Not Bad
 - https://github.com/U171N/perintah-linux.git
+- https://github.com/YogaRmdn/Linux_command
