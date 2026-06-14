@@ -175,6 +175,9 @@ composer install for production
 ```
 composer install --no-dev --optimize-autoloader
 ```
+```
+composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+```
 
 
 Ini **kejadian khas Kali Linux** 👍
