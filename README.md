@@ -357,3 +357,7 @@ Ada lagi perintah spesifik yang ingin kamu buatkan shortcut-nya?
 #### Not Bad
 - https://github.com/U171N/perintah-linux.git
 - https://github.com/YogaRmdn/Linux_command
+
+### alt + Prt Sc
+
+<img width="3072" height="1670" alt="Screenshot From 2026-03-01 02-40-37" src="https://github.com/user-attachments/assets/4e433120-5cff-4bab-b424-f41fbc34c192" />
