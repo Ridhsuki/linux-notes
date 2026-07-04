@@ -370,7 +370,7 @@ ffmpeg -i Otakudesu_Ovlord.S2--11_720p.mp4 -ss 00:01:56 -to 00:02:29 ~/Downloads
 ffmpeg -i \[Kusonime\]\ Overlord\ S4\ BD\ -\ 05.mkv -ss 00:11:06 -to 00:12:27 ~/Downloads/maresaidarinse.mp4
 ```
 
-## Timelapse Vide
+## Timelapse Video
 ### to 30 seconds
 ```swift                                                                                                               
 ┌──(adminfid㉿kali)-[~/Downloads/test]
@@ -380,3 +380,12 @@ ffmpeg -i \[Kusonime\]\ Overlord\ S4\ BD\ -\ 05.mkv -ss 00:11:06 -to 00:12:27 ~/
 └─$ ffmpeg -i input.mp4 -vf "setpts=1/50*PTS" -an output_30s.mp4   
 ```
 
+### make timelapse and add music in one command
+```swift
+ffmpeg -i input.mp4 -i music.mp3 -vf "setpts=1/120*PTS,fps=60" -c:a aac -map 0:v:0 -map 1:a:0 -shortest timelapsed-with-music.mp4
+```
+
+### add music to exsiting 30seconds video
+```swift
+ffmpeg -i exsiting.mp4 -i music.mp3 -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 -shortest output_musik.mp4
+```
