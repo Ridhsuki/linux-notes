@@ -361,3 +361,22 @@ Ada lagi perintah spesifik yang ingin kamu buatkan shortcut-nya?
 ### alt + Prt Sc
 
 <img width="3072" height="1670" alt="Screenshot From 2026-03-01 02-40-37" src="https://github.com/user-attachments/assets/4e433120-5cff-4bab-b424-f41fbc34c192" />
+
+
+## Potong2 Video pkai CLI 
+```swift
+ffmpeg -i input.mp4 -ss 00:01:56 -to 00:02:29 ~/Downloads/output.mp4
+ffmpeg -i Otakudesu_Ovlord.S2--11_720p.mp4 -ss 00:01:56 -to 00:02:29 ~/Downloads/shalltear-aa-rinn-suu.mp4
+ffmpeg -i \[Kusonime\]\ Overlord\ S4\ BD\ -\ 05.mkv -ss 00:11:06 -to 00:12:27 ~/Downloads/maresaidarinse.mp4
+```
+
+## Timelapse Vide
+### to 30 seconds
+```swift                                                                                                               
+┌──(adminfid㉿kali)-[~/Downloads/test]
+└─$ ffmpeg -i input.mp4 -vf "setpts=1/120*PTS,fps=60" -an output_smooth.mp4
+                                                                                                                                                                                              
+┌──(adminfid㉿kali)-[~/Downloads/test]
+└─$ ffmpeg -i input.mp4 -vf "setpts=1/50*PTS" -an output_30s.mp4   
+```
+
