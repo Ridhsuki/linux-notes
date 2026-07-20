@@ -1,0 +1,34 @@
+1. Domain setup -> add new 
+	nama_domain.ridhsuki.my.id
+	create
+
+2. Database -> Database Name -> Create
+	save Database Username Password
+
+3. PhpMyAdmin -> import dari db local 
+
+4. File Manager -> open domain -> Upload zip 
+	Ekstrak zip
+	Open folder ekstrakan tadi -> public
+	Select All public -> move to public_html
+
+5. index.php di public_html
+	Di setiap tulisan storage
+	/../namaproject zip/storage
+	/../namaproject zip/vendor
+	/../namaproject.zip/bootstrap
+	Save
+
+6. env di folder project
+	edit -> database
+	ganti dari db username dan password dari database
+
+7. hapus index.html 
+
+
+
+******************************************
+MADE BY RIDHSUKI (ridhsuki.my.id)
+IDN POLYTECHNIC 3
+PROGRAMMER
+******************************************
