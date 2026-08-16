@@ -389,3 +389,8 @@ ffmpeg -i input.mp4 -i music.mp3 -vf "setpts=1/120*PTS,fps=60" -c:a aac -map 0:v
 ```swift
 ffmpeg -i exsiting.mp4 -i music.mp3 -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 -shortest output_musik.mp4
 ```
+
+### How to convert pdf to jpg in one directory
+```bash
+i=1; for f in *.pdf; do pdftoppm -jpeg -singlefile "$f" "$i"; ((i++)); done
+```
