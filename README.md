@@ -394,3 +394,30 @@ ffmpeg -i exsiting.mp4 -i music.mp3 -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 -sh
 ```bash
 i=1; for f in *.pdf; do pdftoppm -jpeg -singlefile "$f" "$i"; ((i++)); done
 ```
+
+Untuk mengecilkan ukuran gambar dari 8.2 MB menjadi sekitar 6 MB di Linux, cara paling cepat dan efisien adalah menggunakan terminal. Karena Anda memiliki target ukuran yang spesifik, ada dua alat berbasis teks (CLI) yang sangat direkomendasikan karena fitur pembatasan ukurannya.
+
+Berikut adalah panduan langkah demi langkahnya:
+
+### 1. Menggunakan ImageMagick (Paling Direkomendasikan)
+
+ImageMagick adalah alat manipulasi gambar yang sangat kuat. Alat ini memiliki fitur luar biasa untuk file JPEG di mana Anda bisa langsung menetapkan target maksimal ukuran file, dan sistem akan menyesuaikan kompresinya secara otomatis.
+
+**Langkah Instalasi:**
+Buka terminal dan instal ImageMagick sesuai distribusi Linux Anda:
+
+* **Ubuntu/Debian/Mint:** `sudo apt install imagemagick`
+* **Fedora:** `sudo dnf install ImageMagick`
+* **Arch Linux:** `sudo pacman -S imagemagick`
+
+**Perintah Eksekusi:**
+Gunakan perintah `convert` dengan opsi `-define jpeg:extent`.
+
+```bash
+convert gambar_asli.jpg -define jpeg:extent=6MB gambar_baru.jpg
+
+```
+
+> **Catatan:** Fitur `-define jpeg:extent` ini hanya bekerja secara efektif pada format file **.jpg** atau **.jpeg**. Perintah ini akan mencoba mempertahankan kualitas sebaik mungkin sambil memastikan hasil akhirnya tidak lebih dari 6 MB.
+
+---
