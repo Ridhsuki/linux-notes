@@ -421,3 +421,25 @@ convert gambar_asli.jpg -define jpeg:extent=6MB gambar_baru.jpg
 > **Catatan:** Fitur `-define jpeg:extent` ini hanya bekerja secara efektif pada format file **.jpg** atau **.jpeg**. Perintah ini akan mencoba mempertahankan kualitas sebaik mungkin sambil memastikan hasil akhirnya tidak lebih dari 6 MB.
 
 ---
+
+Cara paling mudah memperkecil ukuran file PDF di Linux melalui terminal adalah menggunakan Ghostscript. Jalankan perintah gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dPDFSETTINGS=/screen -dNOPAUSE -dBATCH -sOutputFile=hasil.pdf input.pdf di terminal Anda. [1, 2, 3] 
+## Pilihan Pengaturan Kualitas (PDFSETTINGS)
+
+* /screen: Resolusi 72 dpi, ukuran file paling kecil, cocok untuk web.
+* /ebook: Resolusi 150 dpi, kualitas seimbang untuk baca.
+* /printer: Resolusi 300 dpi, kualitas cetak. [1] 
+
+## Langkah-langkah di Terminal
+
+* Install ghostscript jika belum ada: sudo apt install ghostscript
+* Masuk ke folder file PDF Anda.
+* Ketik perintah kompresi dengan mengganti input.pdf dan hasil.pdf sesuai nama file Anda. [2, 4, 5] 
+
+Jika Anda mau, saya bisa jelaskan cara kompres menggunakan tools GUI (tampilan grafis) atau metode lain seperti pdftoppm. Beritahu saya jika Anda membutuhkannya!
+
+[1] [https://www.youtube.com](https://www.youtube.com/watch?v=nFFf3Q5acCg&t=103)
+[2] [https://www.youtube.com](https://www.youtube.com/watch?v=efm_Dh9vSVU&t=5)
+[3] [https://packages.fedoraproject.org](https://packages.fedoraproject.org/pkgs/shrinkpdf/shrinkpdf/fedora-41.html)
+[4] [https://www.digitalocean.com](https://www.digitalocean.com/community/tutorials/reduce-pdf-file-size-in-linux)
+[5] [https://community.claris.com](https://community.claris.com/en/s/question/0D53w0000680OtlCAE/best-recommendations-for-linux-server-doing-compression-on-pdf-files-it-creates)
+
