@@ -443,3 +443,197 @@ Jika Anda mau, saya bisa jelaskan cara kompres menggunakan tools GUI (tampilan g
 [4] [https://www.digitalocean.com](https://www.digitalocean.com/community/tutorials/reduce-pdf-file-size-in-linux)
 [5] [https://community.claris.com](https://community.claris.com/en/s/question/0D53w0000680OtlCAE/best-recommendations-for-linux-server-doing-compression-on-pdf-files-it-creates)
 
+___
+
+Bisa, dan untuk kasus seperti ini saya menyarankan memakai `trafilatura`. Tool ini memang dirancang untuk mengekstrak konten utama halaman web, seperti judul, paragraf, heading, list, dan isi artikel, sambil membuang navbar, footer, menu, dan elemen web lain yang tidak relevan. Ia juga mendukung output Markdown, sehingga cukup nyaman untuk artikel tutorial yang berisi kode. ([Trafilatura][1])
+
+Saya cek URL SantriKoding yang Anda berikan. Isi artikelnya memang tersedia di HTML dan bagian utamanya mencakup "Langkah 1 - Membuat Tema", "Langkah 2 - Konfigurasi Asset", "Langkah 3 - Konfigurasi Tema", serta kode Flutter/Dart. ([Santri Koding][2]) Jadi pendekatan ini cocok untuk halaman tersebut.
+
+Untuk Kali/Debian/Ubuntu, pasang dulu:
+
+```bash
+sudo apt install pipx xclip
+pipx ensurepath
+pipx install trafilatura
+```
+
+Setelah itu, pola paling sederhana persis seperti `git diff | xclip` Anda:
+
+```bash
+trafilatura -u "https://santrikoding.com/tutorial-membuat-aplikasi-al-quran-dengan-flutter-3-konfigurasi-tema" \
+  --markdown --no-comments \
+  | xclip -selection clipboard
+```
+
+Sekarang tinggal paste ke ChatGPT dengan `Ctrl+V`.
+
+Saya lebih menyarankan versi berikut karena URL sumber ikut masuk ke clipboard:
+
+```bash
+url="https://santrikoding.com/tutorial-membuat-aplikasi-al-quran-dengan-flutter-3-konfigurasi-tema"
+
+{
+    echo "SUMBER: $url"
+    echo
+    trafilatura -u "$url" --markdown --no-comments
+} | xclip -selection clipboard
+```
+
+Hasil clipboard kira-kira akan berbentuk:
+
+````text
+SUMBER: https://santrikoding.com/...
+
+# Tutorial Membuat Aplikasi Al-Quran Dengan Flutter #3: Konfigurasi Tema
+
+### Langkah 1 - Membuat Tema
+
+...
+
+### Langkah 2 - Konfigurasi Asset
+
+...
+
+```yaml
+flutter:
+  assets:
+    - assets/icons/
+...
+````
+
+### Langkah 3 - Konfigurasi Tema
+
+...
+
+````
+
+Ini lebih bagus daripada:
+
+```bash
+curl URL | pandoc ...
+````
+
+karena `trafilatura` melakukan main-content extraction, bukan sekadar mengubah seluruh HTML menjadi teks. Dokumentasinya memang menyediakan penggunaan langsung `trafilatura -u URL`, dan Markdown dapat dipilih dengan `--markdown`. ([Trafilatura][1])
+
+Untuk artikel pemrograman, saya menyarankan jangan langsung memakai opsi `--precision`, sebab prioritas kita adalah jangan sampai bagian tutorial atau kode yang berguna terbuang. Kalau suatu website menghasilkan terlalu banyak sampah, barulah coba:
+
+```bash
+trafilatura -u "$url" \
+  --markdown \
+  --no-comments \
+  --precision \
+  | xclip -selection clipboard
+```
+
+`--precision` memang ditujukan untuk memprioritaskan ekstraksi bagian yang paling sentral dan mengurangi noise. ([Trafilatura][3])
+
+Yang paling nyaman adalah membuat command sendiri, misalnya `webcopy`. Jika shell Anda Zsh, masukkan ini ke `~/.zshrc`:
+
+```bash
+webcopy() {
+    local url="$1"
+
+    if [[ -z "$url" ]]; then
+        echo "Usage: webcopy <URL>"
+        return 1
+    fi
+
+    {
+        echo "SOURCE URL: $url"
+        echo
+        trafilatura -u "$url" \
+            --markdown \
+            --no-comments
+    } | xclip -selection clipboard
+
+    echo "✓ Konten artikel sudah disalin ke clipboard."
+}
+```
+
+Reload:
+
+```bash
+source ~/.zshrc
+```
+
+Setelah itu Anda cukup melakukan:
+
+```bash
+webcopy https://santrikoding.com/tutorial-membuat-aplikasi-al-quran-dengan-flutter-3-konfigurasi-tema
+```
+
+Lalu:
+
+```text
+Ctrl+V
+```
+
+ke percakapan kita.
+
+Untuk mengecek apa yang sudah masuk clipboard sebelum dikirim:
+
+```bash
+xclip -selection clipboard -o
+```
+
+atau hanya 50 baris pertama:
+
+```bash
+xclip -selection clipboard -o | head -n 50
+```
+
+Bisa juga cek ukurannya:
+
+```bash
+xclip -selection clipboard -o | wc -c
+```
+
+Saya bahkan menyarankan membuat versi `webcopy` yang otomatis menambahkan instruksi kepada saya. Contohnya:
+
+```bash
+webcopy() {
+    local url="$1"
+
+    if [[ -z "$url" ]]; then
+        echo "Usage: webcopy <URL>"
+        return 1
+    fi
+
+    {
+        echo "Berikut adalah konten artikel yang saya ambil dari web."
+        echo "Gunakan informasi ini sebagai referensi untuk membantu saya."
+        echo
+        echo "SOURCE URL: $url"
+        echo
+        echo "========== ARTICLE =========="
+        trafilatura -u "$url" \
+            --markdown \
+            --no-comments
+        echo
+        echo "========== END ARTICLE =========="
+    } | xclip -selection clipboard
+
+    echo "✓ Artikel siap di-paste ke ChatGPT."
+}
+```
+
+Dengan begitu workflow Anda menjadi sangat sederhana:
+
+```bash
+git diff | xclip -selection clipboard
+```
+
+untuk source code, dan:
+
+```bash
+webcopy https://example.com/artikel
+```
+
+untuk artikel web.
+
+Satu catatan penting: ini mengekstrak **isi utama artikel**, bukan melakukan rangkuman secara semantik. Menurut saya itu justru paling tepat untuk dikirim kepada saya, karena kode, konfigurasi, argumentasi, dan langkah tutorial tetap utuh. Setelah Anda paste hasil `webcopy`, Anda bisa meminta saya seperti, "pelajari artikel ini dan sesuaikan dengan project saya", "ambil hanya langkah implementasinya", atau "bandingkan dengan kode saya sekarang".
+
+[1]: https://trafilatura.readthedocs.io/en/latest/usage-cli.html?utm_source=chatgpt.com "Command-line usage — Trafilatura 2.2.0 documentation"
+[2]: https://santrikoding.com/tutorial-membuat-aplikasi-al-quran-dengan-flutter-3-konfigurasi-tema "Tutorial Membuat Aplikasi Al-Quran Dengan Flutter #3: Konfigurasi Tema — SantriKoding.com — Website Belajar Coding Bahasa Indonesia Secara Terstruktur.
+"
+[3]: https://trafilatura.readthedocs.io/en/stable/usage-cli.html?utm_source=chatgpt.com "On the command-line — Trafilatura 2.2.0 documentation"
